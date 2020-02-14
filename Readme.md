@@ -14,9 +14,12 @@ import { getSymbols } from 'abstractconnect';
 getSymbols({
   filter: symbol => symbol.name === 'MySymbol'
 }).then(({ MySymbol }) => {
+  //select your layer by name
   const MyLayer = MySymbol.layers.MyLayerName
-  const someCSS = `
-    font-size: ${MyLayer.style.text.fontSize};
+  
+  //do whatever it is you want to do with design information
+  onst someCSS = `
+    font-size: ${MyLayer.style.text.fontSize}px;
     background: ${MyLayer.style.background};
   `;
 
