@@ -11,8 +11,14 @@ import { getSymbols } from 'abstractconnect';
 
 getSymbols({
   filterBy: symbol => symbol.name === 'MySymbol'
-}).then(symbols => {
-  symbols.
+}).then(({ MySymbol }) => {
+  const MyLayer = MySymbol.layers.MyLayerName
+  const someCSS = `
+    font-size: ${MyLayer.style.text.fontSize};
+    background: ${MyLayer.style.background};
+  `;
+
+  //etc
 });
 
 ```

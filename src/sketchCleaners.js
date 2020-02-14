@@ -1,3 +1,5 @@
+import { namedObjArrayToKeyVals } from './utils';
+
 function cleanColor({ red, green, blue, alpha }) {
   return `rgba(${parseInt(red.toFixed(5)*255)}, ${parseInt(green.toFixed(5)*255)}, ${parseInt(blue.toFixed(5)*255)}, ${alpha})`
 }
@@ -78,7 +80,7 @@ function cleanLayer(layer) {
 
     // is this layer a parent?
     hasChildren: hasChildren(layer),
-    children: hasChildren(layer) && layer.layers.map(cleanLayer),
+    children: hasChildren(layer) && namedObjArrayToKeyVals(layer.layers.map(cleanLayer)),
 
     // the big one!
     style: {
@@ -100,7 +102,7 @@ function cleanLayer(layer) {
 function cleanSymbol(symbol) {
   return {
     name: symbol.name,
-    layers: symbol.layers.map(cleanLayer),
+    layers: namedObjArrayToKeyVals(symbol.layers.map(cleanLayer)),
 
     dimensions: {
       width: symbol.frame.width,

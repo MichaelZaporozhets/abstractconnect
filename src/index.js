@@ -5,6 +5,7 @@ import { ABSTRACT_PROJECT_ID, ABSTRACT_BRANCH, ABSTRACT_FILE_NAME, TEMP_PATH } f
 import { doLog } from './log';
 import { Sketch } from 'sketch-constructor';
 import { cleanSymbol } from './sketchCleaners';
+import { namedObjArrayToKeyVals } from './utils';
 
 async function getMasterHead() {
   const masterBranchInfo = await client.branches.info({
@@ -76,10 +77,7 @@ async function getSymbols({ raw, filter, fromSHA }) {
   const refined = raw === true ? filteredSymbols : filteredSymbols.map(cleanSymbol);
 
   // send it back in a nice format!
-  return refined.reduce((acc, symbol) => ({
-    ...acc,
-    [symbol.name]: symbol
-  }), {});
+  return namedObjArrayToKeyVals(refined);
 }
 
 export {
