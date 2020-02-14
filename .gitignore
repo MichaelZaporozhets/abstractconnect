@@ -1,6 +1,7 @@
 #files
 .env
 test.js
+yarn-error.log
 
 # folders
 node_modules
