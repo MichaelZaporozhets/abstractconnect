@@ -12,7 +12,7 @@ This package retrieves symbols from a specified sketch file stored in abstract, 
 import { getSymbols } from 'abstractconnect';
 
 getSymbols({
-  filterBy: symbol => symbol.name === 'MySymbol'
+  filter: symbol => symbol.name === 'MySymbol'
 }).then(({ MySymbol }) => {
   const MyLayer = MySymbol.layers.MyLayerName
   const someCSS = `
