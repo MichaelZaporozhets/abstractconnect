@@ -6,7 +6,7 @@ This package retrieves symbols from a specified sketch file stored in abstract, 
 ### Usage
 
 
-```
+```javascript
 import { getSymbols } from 'abstractconnect';
 
 getSymbols({
