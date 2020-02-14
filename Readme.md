@@ -28,6 +28,11 @@ getSymbols({
 });
 
 ```
+#### getSymbols
+has the following options:
+- `filter`: expects a standard js filter function
+- `raw`: set to `true` to get the 'raw' symbol data from sketch
+- `fromSHA`: target a specific commit in abstract
 
 ### Setup
 
@@ -37,6 +42,10 @@ This package is configured using environment values. Simplest setup is to drop a
 ABSTRACT_TOKEN=<YOUR DEVELOPER TOKEN>
 ABSTRACT_PROJECT_ID=<YOUR PROJECT ID>
 ABSTRACT_FILE_NAME=<THE NAME OF YOUR SKETCH FILE>
+ABSTRACT_BRANCH=<OPTIONAL: DEFAULTS TO 'master'>
+LOG_LEVEL=<OPTIONAL: to turn off console info add this to equal 'silent'>
+TEMP_PATH=<OPTIONAL: DEFAULTS TO <YOURPROJECTPATH>/temp
+
 ```
 
 **finding your project id**
