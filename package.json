@@ -7,7 +7,7 @@
     "start": "node -r esm src/index.js",
     "build": "rm -rf dist && webpack",
     "test": "jest --coverage --verbose --silent --runInBand",
-    "prepublishOnly": "npm install && npm run build"
+    "prepublishOnly": "yarn && yarn build"
   },
   "browser": {
     "child_process": false
