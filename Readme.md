@@ -1,4 +1,6 @@
 # AbstractConnect
+[![NPM Version and link](https://img.shields.io/npm/v/abstractconnect)](https://www.npmjs.com/package/abstractconnect)
+
 #### A utility that lets you connect your design data stored in Abstract to your application code
 
 This package retrieves symbols from a specified sketch file stored in abstract, models the data neatly and transposes sketch format styles into more webdev(tm) friendly values.
