@@ -29,7 +29,7 @@ getSymbols({
 
 ```
 #### getSymbols
-has the following options:
+takes a single parameter, an object with config:
 - `filter`: expects a standard js filter function
 - `raw`: set to `true` to get the 'raw' symbol data from sketch
 - `fromSHA`: target a specific commit in abstract
