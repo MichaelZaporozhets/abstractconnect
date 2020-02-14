@@ -1,6 +1,6 @@
 {
   "name": "abstractconnect",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "connect designs managed in abstract to your code",
   "main": "dist/bundle.js",
   "scripts": {
