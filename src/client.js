@@ -1,8 +1,8 @@
 import path from 'path';
-import * as Abstract from "abstract-sdk";
+import { Client } from "abstract-sdk";
 import { ABSTRACT_TOKEN } from './constants';
 
-const client = new Abstract.Client({
+const client = new Client({
   transportMode: ["api"],
   accessToken: ABSTRACT_TOKEN
 });

@@ -3,7 +3,7 @@ function cleanColor({ red, green, blue, alpha }) {
 }
 
 function hasText(layer) {
-  return layer.attributedString && true;
+  return Boolean(layer.attributedString);
 }
 
 function cleanText(textStyle) {
@@ -48,8 +48,15 @@ function hasBorder(layerStyle) {
   return layerStyle.borders.length && layerStyle.borders[0].isEnabled
 }
 
+function isShape(layer) {
+  return Boolean(layer.points) && layer.points.length > 0
+}
+
+function hasChildren(layer) {
+  return Boolean(layer.layers) && layer.layers.length > 0
+}
+
 function cleanLayer(layer) {
-  console.log(layer.style)
   return {
     // loves a good name
     name: layer.name,
@@ -66,12 +73,12 @@ function cleanLayer(layer) {
     isLocked: layer.isLocked,
 
     // shapes are useful to know!
-    isShape: layer.points && layer.points.length > 0,
-    shapeData: layer.points,
+    isShape: isShape(layer),
+    shapeData: isShape(layer) && layer.points,
 
     // is this layer a parent?
-    hasChildren: layer.layers && layer.layers.length > 0,
-    children: layer.layers && layer.layers.map(cleanLayer),
+    hasChildren: hasChildren(layer),
+    children: hasChildren(layer) && layer.layers.map(cleanLayer),
 
     // the big one!
     style: {

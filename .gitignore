@@ -1,5 +1,6 @@
 #files
 .env
+test.js
 
 # folders
 node_modules

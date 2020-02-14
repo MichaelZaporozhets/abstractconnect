@@ -797,7 +797,7 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@elasticprojects/abstract-cli@^3.5.0":
+"@elasticprojects/abstract-cli@^3.5.0", "@elasticprojects/abstract-cli@^3.5.3":
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/@elasticprojects/abstract-cli/-/abstract-cli-3.5.3.tgz#c8410b4553acdb51ae707424bce43e436535c7fc"
   integrity sha512-OvSv4tsL3N76IHgytI/VIvVJmVXXpPyDApIDawOa/MiBtmh6kXHwczP4NhxcR13O7nfCTHvY69gG3DgCmmTuCg==

@@ -1,11 +1,13 @@
 {
   "name": "abstractconnect",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "connect designs managed in abstract to your code",
-  "main": "dist/bundle.js",
+  "main": "dist/main.js",
   "scripts": {
     "start": "node -r esm src/index.js",
     "build": "rm -rf dist && webpack",
+    "fixACLIPath": "mkdir dist/bin && ln -s $(pwd)/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli $(pwd)/dist/bin/abstract-cli",
+    "install": "npm run fixACLIPath",
     "test": "jest --coverage --verbose --silent --runInBand",
     "prepublishOnly": "yarn && yarn build"
   },
@@ -17,6 +19,7 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@elasticprojects/abstract-cli": "^3.5.3",
     "abstract-sdk": "8.0.0-beta.11",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",

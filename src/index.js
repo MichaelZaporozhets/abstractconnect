@@ -59,7 +59,7 @@ async function getLocalSketchFileBySHA(sha) {
   return path;
 }
 
-async function getSymbols({ raw, withFilter, fromSHA }) {
+async function getSymbols({ raw, filter, fromSHA }) {
   const sketchFile = await getSketchFile(fromSHA);
   const sketchFileData = await Sketch.fromFile(sketchFile);
 
@@ -70,13 +70,16 @@ async function getSymbols({ raw, withFilter, fromSHA }) {
   const ensuredSymbols = allSymbols.layers.filter(symbolLayer => symbolLayer._class === "symbolMaster")
 
   // apply filter if passed
-  const filteredSymbols = withFilter ? ensuredSymbols.filter(withFilter) : ensuredSymbols;
+  const filteredSymbols = filter ? ensuredSymbols.filter(filter) : ensuredSymbols;
 
   // clean up the obj model by default
   const refined = raw === true ? filteredSymbols : filteredSymbols.map(cleanSymbol);
 
-  // send it back!
-  return refined;
+  // send it back in a nice format!
+  return refined.reduce((acc, symbol) => ({
+    ...acc,
+    [symbol.name]: symbol
+  }), {});
 }
 
 export {
