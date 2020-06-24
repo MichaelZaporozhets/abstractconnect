@@ -16,7 +16,7 @@ getSymbols({
 
   //select your layer by name
   const MyLayer = MySymbol.layers.MyLayerName
-  
+
   //do whatever it is you want to do with design information
   const someCSS = `
     font-size: ${MyLayer.style.text.fontSize}px;
@@ -32,6 +32,7 @@ takes a single parameter, an object with config:
 - `filter`: expects a standard js filter function
 - `raw`: set to `true` to get the 'raw' symbol data from sketch
 - `fromSHA`: target a specific commit in abstract
+- `withFS`: force download to FS (ends up in the TEMP_PATH setup var below)
 
 ### Setup
 
