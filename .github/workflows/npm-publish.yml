@@ -17,8 +17,6 @@ jobs:
           node-version: 12
       - uses: CultureHQ/actions-yarn@v1.0.1
       - run: yarn
-      - run: yarn add webpack --dev
-      - run: yarn build
 
   publish-npm:
     needs: build
@@ -29,8 +27,6 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn
-      - run: yarn add webpack --dev
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
