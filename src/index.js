@@ -31,37 +31,42 @@ async function getFileData(name, sha) {
   return files.find(file => file.name === name);
 }
 
-async function downloadRawFile(file, outputPath) {
+async function downloadRawFile({ file, outputPath, withFS }) {
   const result = await client.files.raw({
     projectId: ABSTRACT_PROJECT_ID,
     branchId: ABSTRACT_BRANCH,
     fileId: file.id,
     sha: file.sha
-  }, {
+  }, withFS ? {
     filename: outputPath
+  } : {
+    disableWrite: true
   });
+
+  return result;
 }
 
-async function getSketchFile(fromSHA) {
-  const file = await getFileData(ABSTRACT_FILE_NAME, fromSHA);
+async function getSketchFileWithFS({ file, fromSHA }) {
   const outputPath = `${TEMP_PATH}/${file.sha}.sketch`;
   const fileExists = fs.existsSync(outputPath);
 
   if(!fileExists) {
     doLog('\nabstractconnect: downloading data... ==\n');
-    const result = await downloadRawFile(file, outputPath);
+    const result = await downloadRawFile({ file, outputPath, withFS });
   }
 
   return outputPath;
 }
 
-async function getLocalSketchFileBySHA(sha) {
-  const path = `${TEMP_PATH}/${sha}.sketch`;
-  return path;
+async function getSketchFile({ fromSHA, withFS }) {
+  const file = await getFileData(ABSTRACT_FILE_NAME, fromSHA);
+  const withFSRes = withFS && await getSketchFileWithFS({ file, fromSHA });
+  const withBufferRes = !withFS && await downloadRawFile({ file, withFS });
+  return withFS ? withFSRes : withBufferRes && Buffer.from(withBufferRes);
 }
 
-async function getSymbols({ raw, filter, fromSHA }) {
-  const sketchFile = await getSketchFile(fromSHA);
+async function getSymbols({ raw, filter, fromSHA, withFS }) {
+  const sketchFile = await getSketchFile({ fromSHA, withFS }).catch(e => console.error(e));
   const sketchFileData = await Sketch.fromFile(sketchFile);
 
   // sketch creates a special page for all the symbols

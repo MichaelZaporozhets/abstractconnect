@@ -5,8 +5,8 @@
   "main": "dist/main.js",
   "scripts": {
     "start": "node -r esm src/index.js",
-    "build": "rm -rf dist && webpack",
-    "fixACLIPath": "mkdir dist/bin && ln -s $(pwd)/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli $(pwd)/dist/bin/abstract-cli",
+    "build": "rm -rf dist && webpack && yarn fixACLIPath",
+    "fixACLIPath": "rm -rf dist/bin && mkdir dist/bin && ln -s $(pwd)/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli $(pwd)/dist/bin/abstract-cli",
     "install": "npm run fixACLIPath",
     "test": "jest --coverage --verbose --silent --runInBand",
     "prepublishOnly": "yarn build"
@@ -34,8 +34,8 @@
     "json-to-scss": "^1.4.0",
     "lodash": "4.17.13",
     "minimatch": "3.0.2",
-    "sketch-constructor": "^1.2.3",
-    "webpack": "^4.35.0",
+    "sketch-constructor": "^1.21.2",
+    "webpack": "^4.43.0",
     "webpack-livereload-plugin": "^2.2.0"
   },
   "devDependencies": {
