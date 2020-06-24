@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r esm src/index.js",
     "build": "rm -rf dist/* && webpack && yarn fixACLIPath",
-    "fixACLIPath": "rm -rf dist/bin && mkdir dist/bin && ln -s $(pwd)/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli $(pwd)/dist/bin/abstract-cli",
+    "fixACLIPath": "mkdir -p dist && rm -rf dist/bin && mkdir dist/bin && ln -s $(pwd)/node_modules/@elasticprojects/abstract-cli/bin/abstract-cli $(pwd)/dist/bin/abstract-cli",
     "install": "npm run fixACLIPath",
     "test": "jest --coverage --verbose --silent --runInBand",
     "prepublishOnly": "yarn build"
