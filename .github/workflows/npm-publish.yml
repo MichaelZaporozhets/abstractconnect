@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - run: yarn add webpack --dev
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
