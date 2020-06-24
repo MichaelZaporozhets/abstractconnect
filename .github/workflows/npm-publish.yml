@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 12
       - uses: CultureHQ/actions-yarn@v1.0.1
+      - run: yarn global add webpack
+      - run: yarn global add webpack-cli
       - run: yarn build
 
   publish-npm:
