@@ -5,7 +5,7 @@ import { ABSTRACT_PROJECT_ID, ABSTRACT_BRANCH, ABSTRACT_FILE_NAME, TEMP_PATH } f
 import { doLog } from './log';
 import { Sketch } from 'sketch-constructor';
 import { cleanSymbol } from './sketchCleaners';
-import { namedObjArrayToKeyVals } from './utils';
+import { namedObjArrayToKeyVals, wait } from './utils';
 
 async function getMasterHead() {
   const masterBranchInfo = await client.branches.info({
@@ -32,6 +32,7 @@ async function getFileData(name, sha) {
 }
 
 async function downloadRawFile({ file, outputPath, withFS }) {
+  doLog('\nAbstractConnect: downloading data...');
   const result = await client.files.raw({
     projectId: ABSTRACT_PROJECT_ID,
     branchId: ABSTRACT_BRANCH,
@@ -42,7 +43,7 @@ async function downloadRawFile({ file, outputPath, withFS }) {
   } : {
     disableWrite: true
   });
-
+  doLog('\nAbstractConnect: download complete 🎉');
   return result;
 }
 
@@ -51,8 +52,12 @@ async function getSketchFileWithFS({ file, fromSHA }) {
   const fileExists = fs.existsSync(outputPath);
 
   if(!fileExists) {
-    doLog('\nabstractconnect: downloading data... ==\n');
-    const result = await downloadRawFile({ file, outputPath, withFS });
+    // create the output folder if it's missing
+    !fs.existsSync(TEMP_PATH) && fs.mkdirSync(TEMP_PATH);
+
+    const result = await downloadRawFile({ file, outputPath, withFS: true });
+    // file system needs a moment!
+    await wait(500);
   }
 
   return outputPath;
