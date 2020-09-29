@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "description": "connect designs managed in abstract to your code",
   "main": "dist/main.js",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": { "registry": "https://registry.npmjs.org/" },
   "scripts": {
     "start": "node -r esm src/index.js",
     "build": "rm -rf dist/* && webpack && yarn fixACLIPath",
